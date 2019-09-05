@@ -1818,6 +1818,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37329,7 +37333,7 @@ var render = function() {
               _c(
                 "tbody",
                 _vm._l(_vm.users, function(user) {
-                  return _c("tr", [
+                  return _c("tr", { key: user.id }, [
                     _c("th", [_vm._v(_vm._s(user.id))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(user.name))]),
@@ -37338,7 +37342,44 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(user.pricing))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("Agregar al carrito")])
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.cant,
+                            expression: "cant"
+                          }
+                        ],
+                        attrs: {
+                          type: "number",
+                          step: "1",
+                          max: "99",
+                          min: "1",
+                          value: "1",
+                          size: "1"
+                        },
+                        domProps: { value: _vm.cant },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.cant = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary btn-sm",
+                          attrs: { type: "button" }
+                        },
+                        [_vm._v("Agregar al carrito")]
+                      )
+                    ])
                   ])
                 }),
                 0
@@ -37363,7 +37404,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "products/create" } }, [
+    return _c("a", { attrs: { href: "products/create", target: "_blank" } }, [
       _c(
         "button",
         { staticClass: "btn btn-success", attrs: { type: "button" } },
