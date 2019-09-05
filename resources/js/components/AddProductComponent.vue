@@ -18,14 +18,15 @@
                             </div>
                              <div class="form-group">
                                 <label for="description">Descripción:</label>
-                                <textarea class="form-control" rows="3" id="comment" placeholder="Descripción del producto" v-model="comment"></textarea>
+                                <textarea class="form-control" rows="3" id="description" placeholder="Descripción del producto" v-model="description"></textarea>
                             </div> 
                             <div class="form-group">
                                 <label for="pricing">Precio:</label>
                                 <input type="text" class="form-control" id="pricing" placeholder="Precio del producto"  v-model="pricing">
                             </div>
                             
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-primary" v-on:click="addNewProduct">Agregar Producto</button>
+                            
                         </form>
                     </div>
                 </div>
@@ -37,10 +38,38 @@
 <script>
     export default {
         data(){
-            
+            return{
+                photo:'',
+                name:'',
+                description:'',
+                pricing:''
+            }
+
         },
         mounted() {
             console.log('Component mounted.')
+        },
+        methods:{
+            addNewProduct(){
+
+                
+                //Send data to APi
+                axios.post('/api/products',{
+                    photo:this.photo,
+                    name:this.name,
+                    description:this.description,
+                    pricing:this.pricing
+                }).then(response=>{
+                    console.log(response)
+
+                    this.photo='',
+                    this.name='',
+                    this.description='',
+                    this.pricing=''
+                }).catch(error=>{
+                    console.log(error)
+                })
+            }
         }
     }
 </script>

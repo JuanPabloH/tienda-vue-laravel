@@ -1733,10 +1733,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {},
+  data: function data() {
+    return {
+      photo: '',
+      name: '',
+      description: '',
+      pricing: ''
+    };
+  },
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  methods: {
+    addNewProduct: function addNewProduct() {
+      var _this = this;
+
+      //Send data to APi
+      axios.post('/api/products', {
+        photo: this.photo,
+        name: this.name,
+        description: this.description,
+        pricing: this.pricing
+      }).then(function (response) {
+        console.log(response);
+        _this.photo = '', _this.name = '', _this.description = '', _this.pricing = '';
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   }
 });
 
@@ -37189,23 +37215,23 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.comment,
-                      expression: "comment"
+                      value: _vm.description,
+                      expression: "description"
                     }
                   ],
                   staticClass: "form-control",
                   attrs: {
                     rows: "3",
-                    id: "comment",
+                    id: "description",
                     placeholder: "Descripción del producto"
                   },
-                  domProps: { value: _vm.comment },
+                  domProps: { value: _vm.description },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.comment = $event.target.value
+                      _vm.description = $event.target.value
                     }
                   }
                 })
@@ -37243,8 +37269,12 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "button",
-                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                [_vm._v("Submit")]
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: { click: _vm.addNewProduct }
+                },
+                [_vm._v("Agregar Producto")]
               )
             ])
           ])
