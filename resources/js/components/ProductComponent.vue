@@ -29,8 +29,8 @@
                                 <td>{{user.pricing}}</td>
                                 <td>
                                     <input type="number" step="1" max="99" min="1" value="1" 
-                                           size="1" v-model="cant">
-                                    <button type="button" class="btn btn-primary btn-sm">Agregar al carrito</button>
+                                           size="1" v-model="quantity">
+                                    <button type="button" class="btn btn-primary btn-sm"  v-on:click="addProductToCart(user.id)">Agregar al carrito</button>
                                 </td>
                                 </tr>
                                                            
@@ -45,9 +45,13 @@
 
 <script>
     export default {
+        
         data(){
             return {
-                users:[]
+                users:[],
+
+                quantity:'',
+                id_product:''
             }
         },
         mounted() {
@@ -55,6 +59,22 @@
 
         },
         methods:{
+            addProductToCart(id){                
+                console.log(this.quantity)
+                this.id_product=id
+                console.log(this.id_product)
+                //Send data to APi
+                axios.post('/api/productCarts',{
+                    quantity:this.quantity,
+                    id_product:this.id_product                   
+                }).then(response=>{
+                    console.log(response)
+
+                }).catch(error=>{
+                    console.log(error)
+                })
+
+            },
             getProducts(){
                 axios.get('/api/products').then(response=>{
                     console.log(response)

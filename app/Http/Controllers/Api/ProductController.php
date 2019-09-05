@@ -15,7 +15,7 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
-    public function store(Request $request){
+   public function store(Request $request){
  
         $product=new Product();
         $product->photo=$request->get('photo');
@@ -26,5 +26,5 @@ class ProductController extends Controller
         $product->save();
 
         return response()->json($product);
-    }
+    } 
 }

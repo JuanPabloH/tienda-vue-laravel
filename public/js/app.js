@@ -1825,13 +1825,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      users: []
+      users: [],
+      quantity: '',
+      id_product: ''
     };
   },
   mounted: function mounted() {
     this.getProducts();
   },
   methods: {
+    addProductToCart: function addProductToCart(id) {
+      console.log(this.quantity);
+      this.id_product = id;
+      console.log(this.id_product); //Send data to APi
+
+      axios.post('/api/productCarts', {
+        quantity: this.quantity,
+        id_product: this.id_product
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     getProducts: function getProducts() {
       var _this = this;
 
@@ -37348,8 +37364,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.cant,
-                            expression: "cant"
+                            value: _vm.quantity,
+                            expression: "quantity"
                           }
                         ],
                         attrs: {
@@ -37360,13 +37376,13 @@ var render = function() {
                           value: "1",
                           size: "1"
                         },
-                        domProps: { value: _vm.cant },
+                        domProps: { value: _vm.quantity },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.cant = $event.target.value
+                            _vm.quantity = $event.target.value
                           }
                         }
                       }),
@@ -37375,7 +37391,12 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-primary btn-sm",
-                          attrs: { type: "button" }
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.addProductToCart(user.id)
+                            }
+                          }
                         },
                         [_vm._v("Agregar al carrito")]
                       )
