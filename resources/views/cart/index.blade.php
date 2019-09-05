@@ -7,7 +7,6 @@
         <cart-list-component></cart-list-component>
         
         <div class="card-body">           
-        <h5>Hola</h5>                              
                             <table class="table table-bordered table-dark">
                                 <thead>
                                     <tr>                                    
