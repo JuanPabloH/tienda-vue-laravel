@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Products_cart;
+use App\Product;
+use App\Cart;
 
 class CartController extends Controller
 {
@@ -13,6 +17,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view("cart.index");
+        
+        $products_carts=Products_cart::paginate(5);        
+        return view("cart.index",compact('products_carts'));
     }
 }

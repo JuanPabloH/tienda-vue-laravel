@@ -1855,7 +1855,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      users: [],
+      products: [],
       quantity: '',
       id_product: ''
     };
@@ -1883,7 +1883,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/products').then(function (response) {
         console.log(response);
-        _this.users = response.data;
+        _this.products = response.data;
       });
     }
   }
@@ -37419,15 +37419,15 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.users, function(user) {
-                  return _c("tr", { key: user.id }, [
-                    _c("th", [_vm._v(_vm._s(user.id))]),
+                _vm._l(_vm.products, function(product) {
+                  return _c("tr", { key: product.id }, [
+                    _c("th", [_vm._v(_vm._s(product.id))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(user.name))]),
+                    _c("td", [_vm._v(_vm._s(product.name))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(user.description))]),
+                    _c("td", [_vm._v(_vm._s(product.description))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(user.pricing))]),
+                    _c("td", [_vm._v(_vm._s(product.pricing))]),
                     _vm._v(" "),
                     _c("td", [
                       _c("input", {
@@ -37465,7 +37465,7 @@ var render = function() {
                           attrs: { type: "button" },
                           on: {
                             click: function($event) {
-                              return _vm.addProductToCart(user.id)
+                              return _vm.addProductToCart(product.id)
                             }
                           }
                         },

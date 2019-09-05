@@ -23,15 +23,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="user in users" :key="user.id">
-                                <th>{{user.id}}</th>
-                                <td>{{user.name}}</td>
-                                <td>{{user.description}}</td>
-                                <td>{{user.pricing}}</td>
+                                <tr v-for="product in products" :key="product.id">
+                                <th>{{product.id}}</th>
+                                <td>{{product.name}}</td>
+                                <td>{{product.description}}</td>
+                                <td>{{product.pricing}}</td>
                                 <td>
                                     <input type="number" step="1" max="99" min="1" value="1" 
                                            size="1" v-model="quantity">
-                                    <button type="button" class="btn btn-primary btn-sm"  v-on:click="addProductToCart(user.id)">Agregar al carrito</button>
+                                    <button type="button" class="btn btn-primary btn-sm"  v-on:click="addProductToCart(product.id)">Agregar al carrito</button>
                                 </td>
                                 </tr>
                                                            
@@ -49,7 +49,7 @@
         
         data(){
             return {
-                users:[],
+                products:[],
 
                 quantity:'',
                 id_product:''
@@ -79,7 +79,7 @@
             getProducts(){
                 axios.get('/api/products').then(response=>{
                     console.log(response)
-                    this.users=response.data
+                    this.products=response.data
                 })
             }
         }

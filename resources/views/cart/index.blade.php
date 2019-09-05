@@ -5,35 +5,39 @@
     <div class="row justify-content-center">
                                                                                             
         <cart-list-component></cart-list-component>
-
-        <div class="card-body">                        
+        
+        <div class="card-body">           
+        <h5>Hola</h5>                              
                             <table class="table table-bordered table-dark">
                                 <thead>
-                                    <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col">Precio</th>
-                                    <th scope="col">Acciones</th>
+                                    <tr>                                    
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Total</th>                                    
                                     </tr>
                                 </thead>
+                                
                                 <tbody>
-                                    <tr v-for="user in users" :key="user.id">
-                                    <th>{{user.id}}</th>
-                                    <td>{{user.name}}</td>
-                                    <td>{{user.description}}</td>
-                                    <td>{{user.pricing}}</td>
+                                @foreach($products_carts as $prod)
+
+                                    @php
+                                    $producto=App\Product::find($prod->id_product)
+                                    @endphp
+                                    <tr>
+                                    <th>{{$producto->name}}</th>
+                                    <td>{{$prod->quantity}}</td>
+                                    <th>{{$prod->total}}</th>                                
                                     <td>
-                                        <input type="number" step="1" max="99" min="1" value="1" 
-                                            size="1" v-model="quantity">
-                                        <button type="button" class="btn btn-primary btn-sm"  v-on:click="addProductToCart(user.id)">Agregar al carrito</button>
+                                    
                                     </td>
                                     </tr>
-                                                            
+                                @endforeach                           
                                 </tbody>
+                                
                                 </table>
                         </div>
         
     </div>
 </div>
+{!!$products_carts->render()!!}
 @endsection

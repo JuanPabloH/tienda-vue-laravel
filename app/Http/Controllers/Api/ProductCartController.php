@@ -24,8 +24,7 @@ class ProductCartController extends Controller
         $productCart->total= $quantity*$prod->pricing ;  
         $productCart->save();        
 
-        $total=DB::table('products_carts')->select(DB::raw('SUM(total) as user_count'));
-        $quantityCart=DB::table('products_carts')->select(DB::raw('SUM(quantity) as user_count'));
+        
         return response()->json($productCart);
 
     }
