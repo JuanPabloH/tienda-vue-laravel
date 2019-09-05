@@ -9,7 +9,7 @@
                         <table class="table table-bordered table-dark">
                             <thead>
                                 <tr>
-                                <th scope="col">Imagen</th>
+                                <th scope="col">Id</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Descripción</th>
                                 <th scope="col">Precio</th>
@@ -17,11 +17,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <tr v-for="user in users">
+                                <th>{{user.id}}</th>
+                                <td>{{user.name}}</td>
+                                <td>{{user.description}}</td>
+                                <td>{{user.pricing}}</td>
+                                <td>Agregar al carrito</td>
                                 </tr>
                                                            
                             </tbody>
@@ -35,8 +36,22 @@
 
 <script>
     export default {
+        data(){
+            return {
+                users:[]
+            }
+        },
         mounted() {
-            console.log('Component mounted.')
+            this.getProducts()
+
+        },
+        methods:{
+            getProducts(){
+                axios.get('/api/products').then(response=>{
+                    console.log(response)
+                    this.users=response.data
+                })
+            }
         }
     }
 </script>

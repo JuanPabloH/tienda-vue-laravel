@@ -8,7 +8,7 @@
                 
                        
                                                                                         
-        <product-component :products="{{ json_encode($products) }}"></product-component> 
+        <product-component></product-component> 
 
         <add-product-component></add-product-component>   
                 
