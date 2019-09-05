@@ -6,21 +6,27 @@
                     <div class="card-header"><strong>Agregar Producto</strong></div>
 
                     <div class="card-body">
-                        <form>
+                        <form action="/products" method="post">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                <label for="photo">Foto</label>
+                                <input type="text" class="form-control" id="photo" placeholder="Link de foto" v-model="photo">
+                                
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                <label for="name">Nombre de producto</label>
+                                <input type="text" class="form-control" id="name" placeholder="Nombre de producto" v-model="name">
                             </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                             <div class="form-group">
+                                <label for="description">Descripción:</label>
+                                <textarea class="form-control" rows="3" id="description" placeholder="Descripción del producto" v-model="description"></textarea>
+                            </div> 
+                            <div class="form-group">
+                                <label for="pricing">Precio:</label>
+                                <input type="text" class="form-control" id="pricing" placeholder="Precio del producto"  v-model="pricing">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            
+                            <button type="button" class="btn btn-primary" v-on:click="addNewProduct">Agregar Producto</button>
+                            
                         </form>
                     </div>
                 </div>
@@ -31,8 +37,39 @@
 
 <script>
     export default {
+        data(){
+            return{
+                photo:'',
+                name:'',
+                description:'',
+                pricing:''
+            }
+
+        },
         mounted() {
             console.log('Component mounted.')
+        },
+        methods:{
+            addNewProduct(){
+
+                
+                //Send data to APi
+                axios.post('/api/products',{
+                    photo:this.photo,
+                    name:this.name,
+                    description:this.description,
+                    pricing:this.pricing
+                }).then(response=>{
+                    console.log(response)
+
+                    this.photo='',
+                    this.name='',
+                    this.description='',
+                    this.pricing=''
+                }).catch(error=>{
+                    console.log(error)
+                })
+            }
         }
     }
 </script>

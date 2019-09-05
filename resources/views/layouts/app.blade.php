@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Infelcom</title>
+    <title>Tienda</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -42,17 +42,16 @@
                         <!-- Authentication Links -->
                         
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Usuario <span class="caret"></span>
+                                <a id="navbar" class="nav-link" href="{!!URL::to('/products')!!}" role="button"
+                                  aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Productos <span class="caret"></span>
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" >
-                                        Opcion1
-                                    </a>
-
-                                    
-                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbar" class="nav-link" href="{!!URL::to('/cart')!!}" role="button"
+                                  aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Ver carrito <span class="caret"></span>
+                                </a>
                             </li>
                         
                     </ul>
