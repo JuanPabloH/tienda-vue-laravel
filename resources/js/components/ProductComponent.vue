@@ -11,6 +11,7 @@
                         <a href="products/create" target="_blank">
                     <button type="button"  class="btn btn-success">Agregar un nuevo producto</button>
                     </a>
+                    
                         <table class="table table-bordered table-dark">
                             <thead>
                                 <tr>

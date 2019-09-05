@@ -22,6 +22,7 @@ window.axios=require('axios');
 
 Vue.component('add-product-component', require('./components/AddProductComponent.vue').default );
 Vue.component('product-component', require('./components/ProductComponent.vue').default);
+Vue.component('cart-list-component', require('./components/CartListComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
